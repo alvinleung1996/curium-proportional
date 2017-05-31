@@ -1,0 +1,65 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="curium-proportional">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+      }
+      :host > #proportional-div {
+        width: 100%;
+        padding-bottom: var(--curium-proportional-aspect-ratio, 0%);
+        visibility: hidden;
+      }
+      :host > #proportional-img {
+        display: block;
+        width: 100%;
+        visibility: hidden;
+      }
+      :host > #container {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        display: flex;
+      }
+      :host > #container > ::slotted(*) {
+        flex: 1;
+      }
+    </style>
+    <div id="proportional-div"></div>
+    <img id="proportional-img" src$="[[src]]"></img>
+    <div id="container">
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `curium-proportional`
+     * Extend functionalities of iron-image
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class CuriumProportional extends Polymer.Element {
+
+      static get is() { return 'curium-proportional'; }
+
+      static get properties() {
+        return {
+          src: {
+            type: String
+          }
+        };
+      }
+    }
+
+    window.customElements.define(CuriumProportional.is, CuriumProportional);
+    window.Curium = window.Curium || {};
+    Curium.CuriumProportional = CuriumProportional;
+  </script>
+</dom-module>
