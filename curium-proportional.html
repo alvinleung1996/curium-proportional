@@ -17,23 +17,18 @@
         width: 100%;
         visibility: hidden;
       }
-      :host > #container {
+      :host > ::slotted(*:not(#proportional-div):not(#proportional-img)) {
+        /* The not selector is for shadydom */
         position: absolute;
         top: 0px;
         right: 0px;
         bottom: 0px;
         left: 0px;
-        display: flex;
-      }
-      :host > #container > ::slotted(*) {
-        flex: 1;
       }
     </style>
     <div id="proportional-div"></div>
     <img id="proportional-img" src$="[[src]]"></img>
-    <div id="container">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </template>
 
   <script>
