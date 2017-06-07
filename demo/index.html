@@ -8,6 +8,7 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
+    <link rel="import" href="../../polymer/lib/elements/custom-style.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../curium-proportional.html">
@@ -34,7 +35,14 @@
       <h3>4:3 curium-proportional demo</h3>
       <demo-snippet>
         <template>
-          <curium-proportional style="--curium-proportional-aspect-ratio: 75%;">
+          <custom-style>
+            <style>
+              .ratio-75 {
+                --curium-proportional-aspect-ratio: 75%;
+              }
+            </style>
+          </custom-style>
+          <curium-proportional class="ratio-75">
             <div style="background-image:url('google-teachers-day.gif'); background-size:contain;"></div>
           </curium-proportional>
         </template>

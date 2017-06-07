@@ -17,6 +17,10 @@
         width: 100%;
         visibility: hidden;
       }
+      :host > #proportional-div[hide],
+      :host > #proportional-img[hide] {
+        display: none;
+      }
       :host > ::slotted(*:not(#proportional-div):not(#proportional-img)) {
         /* The not selector is for shadydom */
         position: absolute;
@@ -26,8 +30,8 @@
         left: 0px;
       }
     </style>
-    <div id="proportional-div"></div>
-    <img id="proportional-img" src$="[[src]]"></img>
+    <div id="proportional-div" hide$="[[_useImageAsBound]]"></div>
+    <img id="proportional-img" src$="[[src]]" hide$="[[!_useImageAsBound]]"></img>
     <slot></slot>
   </template>
 
@@ -47,10 +51,20 @@
       static get properties() {
         return {
           src: {
-            type: String
+            type: String,
+            value: null
+          },
+          _useImageAsBound: {
+            type: Boolean,
+            computed: '_computeUseImageAsBound(src)'
           }
         };
       }
+
+      _computeUseImageAsBound(src) {
+        return !!src;
+      }
+
     }
 
     window.customElements.define(CuriumProportional.is, CuriumProportional);
